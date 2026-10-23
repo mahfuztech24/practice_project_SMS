@@ -6,16 +6,17 @@ from schema import StudentResponse, StudentUpdateRequest, StudentCreateRequet
 
 routers = APIRouter(prefix="/students",tags=["Student"])
 
+@routers.get("/list", status_code= status.HTTP_200_OK)
+def get_all_students(db = Depends(get_db)):
+     service = StudentService()
+     return service.get_all_students(db)
+
 
 @routers.get("/{roll}", status_code= status.HTTP_200_OK)
 def get_student_by_roll(roll: str, db = Depends(get_db)):
     service = StudentService()
     return service.get_student_by_roll(db, roll)
 
-@routers.get("/list", status_code= status.HTTP_200_OK)
-def get_all_students(db = Depends(get_db)):
-     service = StudentService()
-     return service.get_all_students(db)
 
 @routers.post("/create", status_code= status.HTTP_201_CREATED)
 def create_student(student_payload : StudentCreateRequet, db = Depends(get_db)):
@@ -26,5 +27,10 @@ def create_student(student_payload : StudentCreateRequet, db = Depends(get_db)):
 def update_student(roll: str, update_student: StudentUpdateRequest, db =Depends(get_db)):
      service = StudentService()
      return service.update_student(db, update_student, roll)
+
+@routers.delete("/{roll}")
+def delete_student_by_roll(roll: str, db:Session = Depends(get_db)):
+    service = StudentService()
+    return service.delete_student_by_roll(db, roll)
 
 

@@ -3,8 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-# DATABASE_URL ="mysql+pymysql://root:root@localhost:3306/training_db"
-DATABASE_URL = "postgresql+psycopg2://training_wm4s_user:nuAAzaCc9I3RYrAAaU5kRB5ejtlcbxG5@dpg-dbc5b5t9fdbs73bu4i60-a.oregon-postgres.render.com/training_wm4s"
+DATABASE_URL ="mysql+pymysql://root:root@localhost:3306/students"
+#DATABASE_URL = "postgresql+psycopg2://training_h90n_user:s7aDpCDO3U5OjoFt0rAz4geTDwsf8FVC@dpg-dbbfmqc9v7es73f33rq0-a.oregon-postgres.render.com/training_h90n"
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -16,3 +16,4 @@ def get_db():
         yield db
     finally:
         db.close()
+      

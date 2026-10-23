@@ -8,5 +8,5 @@ class Student(Base):
     first_name = Column(String(50), nullable= False)
     last_name = Column(String(50))
     roll = Column(String(50), nullable= False, unique= True)
-    session = Column(Integer)
+    session = Column(String(20))
     department = Column(String(50))
